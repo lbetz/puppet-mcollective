@@ -30,9 +30,8 @@ class mcollective::server::install {
   file{ '/etc/mcollective/facts.yaml':
     owner     => 'root',
     group     => 'root',
-    mode      => 400,
-    loglevel  => debug,
-    content   => inline_template("<%= scope.to_hash.reject { |k,v| k.to_s =~ /(uptime_seconds|timestamp|free)/ }.to_yaml %>"),
+    mode      => '400',
+    content   => template('mcollective/facts.yaml.erb'),
   }
 
   ensure_resource(mcollective::server::agent, $agents, { ensure => present })
