@@ -37,7 +37,7 @@ class mcollective::server::config {
   else {
     file { '/etc/mcollective/ssl/servers-private.pem':
       ensure => file,
-      source => "puppet:///modules/${caller_module_name}/private_keys/mcollective-servers.pem",
+      source => "puppet:///modules/${params::caller_module_name}/private_keys/mcollective-servers.pem",
     }
   }
 
@@ -52,7 +52,7 @@ class mcollective::server::config {
     file { '/etc/mcollective/ssl/servers-public.pem':
       ensure => file,
       mode   => '0644',
-      source => "puppet:///modules/${caller_module_name}/certs/mcollective-servers.pem",
+      source => "puppet:///modules/${params::caller_module_name}/certs/mcollective-servers.pem",
     }
   }
 
