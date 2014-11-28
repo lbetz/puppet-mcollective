@@ -1,0 +1,39 @@
+main_collective = mcollective
+collectives = mcollective
+libdir = <%= @libdir %>
+logfile = /var/log/mcollective.log
+loglevel = info
+daemonize = 1
+
+# Plugins
+securityprovider = ssl
+plugin.psk = unset
+
+plugin.ssl_server_private = /etc/mcollective/ssl/servers-private.pem
+plugin.ssl_server_public = /etc/mcollective/ssl/servers-public.pem
+plugin.ssl_client_cert_dir = /etc/mcollective/ssl/clients/
+plugin.ssl.enforce_ttl = 0
+
+connector = activemq
+direct_addressing = 1
+
+# ActiveMQ connector settings:
+plugin.activemq.pool.size = 1
+plugin.activemq.pool.1.host = <%= @mqueue['host'] %>
+plugin.activemq.pool.1.port = <%= @mqueue['port']%>
+plugin.activemq.pool.1.user = <%= @mqueue['user'] %>
+plugin.activemq.pool.1.password = <%= @mqueue['password'] %>
+plugin.activemq.pool.1.ssl = 1
+plugin.activemq.pool.1.ssl.ca = /var/lib/puppet/ssl/certs/ca.pem
+plugin.activemq.pool.1.ssl.cert = /var/lib/puppet/ssl/certs/<%= @clientcert %>.pem
+plugin.activemq.pool.1.ssl.key = /var/lib/puppet/ssl/private_keys/<%= @clientcert %>.pem
+plugin.activemq.pool.1.ssl.fallback = 0
+plugin.activemq.stomp_1_0_fallback = 0
+plugin.activemq.heartbeat_interval = 30
+plugin.activemq.max_hbread_fails = 2
+plugin.activemq.max_hbrlck_fails = 2
+
+# Facts
+factsource = yaml
+plugin.yaml = /etc/mcollective/facts.yaml
+fact_cache_time = 300

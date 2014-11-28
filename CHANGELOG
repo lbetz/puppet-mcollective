@@ -1,0 +1,11 @@
+2014-11-28 0.1.0
+
+Summary
+
+This Module manage MCollective server, client and users.
+
+Features:
+- installs MCollective server and agents
+- installs MCollective client and plugins
+- connects server and user client to message queue, supports activemq via SSL only
+- supports base64 coded keys and certificates in strings or files as sources
