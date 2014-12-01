@@ -34,7 +34,8 @@ MIIJK....
   cert   => ''-----BEGIN CERTIFICATE-----
 MIIFX...
 -----END CERTIFICATE-----',
-}```
+}
+```
 
 If you wanna use keys and certificates are stored in files leave arguments key and cert out.
 ```puppet
