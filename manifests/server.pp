@@ -24,7 +24,7 @@
 #   ${caller_module_name}/certs/mcollective-servers.pem on the puppetmaster.
 #
 # [*mqueue*]
-#   Parameter hash for MQ connection. Defaults are:
+#   Parameters hash for MQ connection. Defaults are:
 #     host     => 'puppet',
 #     port     => '61614',
 #     user     => 'mcollective',

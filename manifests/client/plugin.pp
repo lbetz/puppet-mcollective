@@ -5,7 +5,7 @@
 # === Parameters
 #
 # [*ensure*]
-#   Installs agent (present) or removes (absent). Default is present.
+#   Installs plugin (present) or removes (absent). Default is present.
 #
 # [*plugin*]
 #   Sets the plugin name, default is the title.

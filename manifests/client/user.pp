@@ -32,7 +32,7 @@
 #   taken from the puppetmaster out of ${caller_module_name}/private_keys/.
 #
 # [*mqueue*]
-#   Parameter hash for MQ connection. Defaults are:
+#   Parameters hash for MQ connection. Defaults are:
 #     host     => 'puppet',
 #     port     => '61614',
 #     user     => 'mcollective',
