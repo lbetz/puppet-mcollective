@@ -3,7 +3,20 @@ require 'spec_helper'
 describe('mcollective::client', :type => :class) do
   let(:facts) { {:osfamily => 'redhat' } }
 
-  context 'mcollective::client on unsupported os' do
+  context 'on RedHat' do
+    it do
+      should contain_package('mcollective-client')
+    end
+  end
+
+  context 'on Debian' do
+    let (:facts) { {:osfamily => 'debian'} }
+    it do
+      should contain_package('mcollective-client')
+    end
+  end
+
+  context 'on unsupported os' do
     let(:facts) { {:osfamily => 'foo', :operatingsystem => 'foo'} }
     it do
       expect {
@@ -12,7 +25,7 @@ describe('mcollective::client', :type => :class) do
     end
   end
 
-  context 'mcollective::client with plugins => [puppet, service]' do
+  context 'with plugins => [puppet, service]' do
     let(:params) { {:plugins => ['puppet', 'service']} }
     it do
       should contain_package('mcollective-puppet-client').with({

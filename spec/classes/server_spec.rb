@@ -3,14 +3,14 @@ require 'spec_helper'
 describe('mcollective::server', :type => :class) do
   let(:facts) { {:osfamily => 'redhat' } }
 
-  context 'mcollective::server on RedHat' do
+  context 'on RedHat' do
     it do
       should contain_file('/etc/mcollective/server.cfg') \
         .with_content(/^libdir\s*=\s*\/usr\/libexec\/mcollective$/)
     end
   end
 
-  context 'mcollective::server on Debian' do
+  context 'on Debian' do
     let (:facts) { {:osfamily => 'debian'} }
     it do
       should contain_file('/etc/mcollective/server.cfg') \
@@ -18,7 +18,7 @@ describe('mcollective::server', :type => :class) do
     end
   end
 
-  context 'mcollective::server on unsupported os' do
+  context 'on unsupported os' do
     let(:facts) { {:osfamily => 'foo', :operatingsystem => 'foo'} }
     it do
       expect {
@@ -27,7 +27,7 @@ describe('mcollective::server', :type => :class) do
     end
   end
 
-  context 'mcollective::server with ensure => running, enable => true' do
+  context 'with ensure => running, enable => true' do
     let(:params) { {:ensure => 'running', :enable => true} }
     it do
       should contain_service('mcollective').with({
@@ -37,7 +37,7 @@ describe('mcollective::server', :type => :class) do
     end
   end
 
-  context 'mcollective::server with ensure => stopped, enable => false' do
+  context 'with ensure => stopped, enable => false' do
     let(:params) { {:ensure => 'stopped', :enable => false} }
     it do
       should contain_service('mcollective').with({
@@ -47,7 +47,7 @@ describe('mcollective::server', :type => :class) do
     end
   end
 
-  context 'mcollective::server with unsupported ensure => foo' do
+  context 'with ensure => foo (non valid value)' do
     let(:params) { {:ensure => 'foo'} }
     it do
       expect {
@@ -56,7 +56,7 @@ describe('mcollective::server', :type => :class) do
     end
   end
 
-  context 'mcollective::server with unsupported enable => foo' do
+  context 'with enable => foo (non valid value)' do
     let(:params) { {:enable => 'foo'} }
     it do
       expect {
@@ -65,7 +65,7 @@ describe('mcollective::server', :type => :class) do
     end
   end
 
-  context 'mcollective::server with agents => puppet, service' do
+  context 'with agents => puppet, service' do
     let(:params) { {:agents => ['puppet', 'service']} }
     it do
       should contain_package('mcollective-puppet-agent').with({
@@ -77,7 +77,7 @@ describe('mcollective::server', :type => :class) do
     end
   end
 
-  context 'mcollective::server with key => base64, cert => base64' do
+  context 'with key => base64, cert => base64' do
     let(:params) { {:key => 'base64', :cert => 'base64'} }
     it do
       should contain_file('/etc/mcollective/ssl/servers-private.pem') \
@@ -87,7 +87,7 @@ describe('mcollective::server', :type => :class) do
     end
   end
 
-  context 'mcollective::server with key => false, cert => false (use files outa caller_module)' do
+  context 'with key => false, cert => false (use files outa caller_module)' do
     let(:params) { {:key => false, :cert => false} }
     it do
       should contain_file('/etc/mcollective/ssl/servers-private.pem')
@@ -95,7 +95,7 @@ describe('mcollective::server', :type => :class) do
     end
   end
 
-  context 'mcollective::server with mqueue => {} (default from params class)' do
+  context 'with mqueue => {} (default from params class)' do
     let(:params) { {:mqueue => {}} }
     it do
       should contain_file('/etc/mcollective/server.cfg') \
@@ -109,7 +109,7 @@ describe('mcollective::server', :type => :class) do
     end
   end
 
-  context 'mcollective::server with mqueue => {host => master, password => foobar}' do
+  context 'with mqueue => {host => master, password => foobar}' do
     let (:params) { {:mqueue => {'host' => 'master', 'password' => 'foobar'}} }
     it do
       should contain_file('/etc/mcollective/server.cfg') \

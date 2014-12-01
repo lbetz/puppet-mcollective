@@ -117,6 +117,23 @@ describe('mcollective::client::user', :type => :define) do
     end
   end
 
+  context 'with server_cert => base64' do
+    let(:title) { 'foo' }
+    let(:params) { {:server_cert => 'base64'} }
+    it do
+      should contain_file('/home/foo/.mcollective.d/credentials/certs/mcollective-servers.pem') \
+        .with_content(/^base64$/)
+    end
+  end
+
+  context 'with server_cert => false' do
+    let(:title) { 'foo' }
+    let(:params) { {:server_cert => 'base64'} }
+    it do
+      should contain_file('/home/foo/.mcollective.d/credentials/certs/mcollective-servers.pem')
+    end
+  end
+
   context 'with certname => foobar' do
     let(:title) { 'foo' }
     let(:params) { {:certname => 'foobar'} }
@@ -167,6 +184,36 @@ describe('mcollective::client::user', :type => :define) do
       expect {
         should contain_file('/home/foobar/.mcollective')
       }.to raise_error(Puppet::Error, /is not an absolute path/)
+    end
+  end
+
+  context 'with mqueue => {} (default from params class)' do
+    let(:title) { 'foo' }
+    let(:params) { {:mqueue => {}} }
+    it do
+      should contain_file('/home/foo/.mcollective') \
+        .with_content(/^plugin.activemq.pool.1.host\s*=\s*puppet$/)
+      should contain_file('/home/foo/.mcollective') \
+        .with_content(/^plugin.activemq.pool.1.port\s*=\s*61614$/)
+      should contain_file('/home/foo/.mcollective') \
+        .with_content(/^plugin.activemq.pool.1.user\s*=\s*mcollective$/)
+      should contain_file('/home/foo/.mcollective') \
+        .with_content(/^plugin.activemq.pool.1.password\s*=\s*marionette$/)
+    end
+  end
+
+  context 'with mqueue => {host => master, password => foobar}' do
+    let(:title) { 'foo' }
+    let (:params) { {:mqueue => {'host' => 'master', 'password' => 'foobar'}} }
+    it do
+      should contain_file('/home/foo/.mcollective') \
+        .with_content(/^plugin.activemq.pool.1.host\s*=\s*master$/)
+      should contain_file('/home/foo/.mcollective') \
+        .with_content(/^plugin.activemq.pool.1.port\s*=\s*61614$/)
+      should contain_file('/home/foo/.mcollective') \
+        .with_content(/^plugin.activemq.pool.1.user\s*=\s*mcollective$/)
+      should contain_file('/home/foo/.mcollective') \
+        .with_content(/^plugin.activemq.pool.1.password\s*=\s*foobar$/)
     end
   end
 
