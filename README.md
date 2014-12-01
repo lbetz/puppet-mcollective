@@ -21,7 +21,8 @@ You must run puppet in agent mode and certicicates have to be found in /var/lib/
 Requires a puppet setup with a master and stored configs enabled. An installed ActiveMQ using SSL certificates. User certificates can used from puppet CA, created by 'puppet cert generate'.
 
 First we wanna install a server connecting to an activemq on host master using the default port. The argument 'agents' put the packages for the given agents on the host. The private key and the signed certificate here is set as string in base64.
-```class { 'mcollective::server':
+```puppet
+class { 'mcollective::server':
   agents => ['package', 'puppet', 'service', 'nettest', 'nrpe'],
   mqueue => {
     host     => 'master',
@@ -36,7 +37,8 @@ MIIFX...
 }```
 
 If you wanna use keys and certificates are stored in files leave arguments key and cert out.
-```class profiles::base {
+```puppet
+class profiles::base {
   class { 'mcollective::server':
     mqueue => {
       host     => 'master',
@@ -46,7 +48,8 @@ If you wanna use keys and certificates are stored in files leave arguments key a
 }
 ```
 The files for key end certificate then must saved in files/private_keys and files/certs repectively of the calling module like a profiles class. Both files have to be named mcollecive-servers.pem.
-```modules
+```puppet
+modules
 |-- mcollective
 `-- profiles
   `-- files
@@ -58,7 +61,8 @@ The files for key end certificate then must saved in files/private_keys and file
 
 ###Installing a client including an user
 Now we're installing the client package and additionally the packages for the client base usage of the puppet, packages, service, nettest and nrpe services. And we use the root account on this host to connect the message queue on 'master'. The necessary configuration file '.mcollective', the client key and certificate ('.mcollective.d') are stored in the given home directory '/root'. The client key and certificate are named 'foo.pem'.
-```class { 'mcollective::client':
+```puppet
+class { 'mcollective::client':
   plugins => ['puppet', 'packages', 'services', 'nettest', 'nrpe'],
 }
 
@@ -74,7 +78,8 @@ mcollective::client::user { 'foo':
 ```
 Here we used for the key and the certivicates, client and mcollective-servers certs, files like above in the server configuration. That means both declarations are contained by another class, i.e. profiles, the mcollective module takes it outta this profiles module's files directory.
  
-```modules
+```puppet
+modules
 |-- mcollective
 `-- profiles
   `-- files
