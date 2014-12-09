@@ -12,7 +12,8 @@ class mcollective::server::install {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
-  $agents = $mcollective::server::agents
+  $agents        = $mcollective::server::agents
+  $exclude_facts = $mcollective::server::exclude_facts
 
   package { ['mcollective', 'mcollective-actionpolicy-auth', 'mcollective-facter-facts']:
     ensure => installed,

@@ -1,4 +1,7 @@
-2014-12-09 0.1.1
+2014-12-09 0.2.0
+
+Features:
+- parameter for exclude some facts from facts.yaml
 
 Bugfixes:
 - client.cfg template, fixed home directory

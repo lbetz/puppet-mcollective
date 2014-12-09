@@ -3,6 +3,19 @@ class mcollective::params {
   $default_agents = [ 'package', 'puppet', 'service' ]
   $default_plugins = $default_agents
 
+  $default_exclude_facts = [
+    'system_uptime',
+    'uptime.*',
+    'rubysitedir',
+    '_timestamp',
+    'memoryfree.*',
+    'swapfree.*',
+    'title',
+    'name',
+    'caller_module_name',
+    'module_name',
+  ]
+
   # defaults to connect activemq
   $mqueue = {
     host      => 'puppet',

@@ -1,7 +1,7 @@
 {
   "author": "Lennart Betz",
   "name": "lbetz-mcollective",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "source": "git://github.com/lbetz/puppet-mcollective",
   "license": "Apache 2.0",
   "project_page": "http://github.com/lbetz/puppet-mcollective",
@@ -37,7 +37,7 @@
   ],
   "dependencies": [
     {
-      "version_requirement": ">= 3.2.2",
+      "version_requirement": ">= 4.2.0",
       "name": "puppetlabs/stdlib"
     }
   ]
