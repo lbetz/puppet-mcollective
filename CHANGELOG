@@ -1,7 +1,7 @@
 2014-12-09 0.2.0
 
 Features:
-- parameter for exclude some facts from facts.yaml
+- refresh of facts.yaml now is done by cron job
 
 Bugfixes:
 - client.cfg template, fixed home directory
