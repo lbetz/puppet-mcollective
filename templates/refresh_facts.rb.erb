@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+require 'rubygems'
+require 'facter'
+require 'facter/application'
+
+Facter::Application.load_puppet
+
+facts = YAML.dump(Facter.to_hash)
+
+File.open('/etc/mcollective/facts.yaml.new', 'w') do |f|
+  f.puts facts
+end
+
+File.rename('/etc/mcollective/facts.yaml.new', '/etc/mcollective/facts.yaml')

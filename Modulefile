@@ -6,4 +6,4 @@ license 'Apache 2.0'
 summary 'Setup and configure MCollective server, client and user on RedHat/CentOS and Debian'
 description 'Setup and configure MCollective server, client and user on RedHat/CentOS and Debian'
 
-dependency 'puppetlabs/stdlib', '>=4.2.0'
+dependency 'puppetlabs/stdlib', '>=3.2.1'

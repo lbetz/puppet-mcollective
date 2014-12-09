@@ -30,8 +30,6 @@
 #     user     => 'mcollective',
 #     password => 'marionette',
 #
-# [*exclude_facts*]
-#   List of facts to be excluded from facts.yaml file. Defaults are set in params.pp.
 #
 # === Examples
 #
@@ -59,7 +57,6 @@ class mcollective::server(
   $key           = false,
   $cert          = false,
   $mqueue        = {},
-  $exclude_facts = [],
 ) inherits mcollective::params {
 
   validate_re($ensure, '^(present|running|stopped)$',
@@ -67,10 +64,8 @@ class mcollective::server(
   validate_bool($enable)
   validate_array($agents)
   validate_hash($mqueue)
-  #validate_array($exclude_fatcs)
 
   $_mqueue        = merge($params::mqueue, $mqueue)
-  $_exclude_facts = union($params::exclude_facts, $exclude_facts)
 
   include install, config, service
 

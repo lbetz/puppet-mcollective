@@ -12,8 +12,8 @@ class mcollective::server::install {
     fail("Use of private class ${name} by ${caller_module_name}")
   }
 
-  $agents        = $mcollective::server::agents
-  $exclude_facts = $mcollective::server::exclude_facts
+  $agents = $mcollective::server::agents
+  $libdir = $params::libdir
 
   package { ['mcollective', 'mcollective-actionpolicy-auth', 'mcollective-facter-facts']:
     ensure => installed,
@@ -28,11 +28,18 @@ class mcollective::server::install {
     purge   => true,
   } ->
 
-  file{ '/etc/mcollective/facts.yaml':
-    owner     => 'root',
-    group     => 'root',
-    mode      => '400',
-    content   => template('mcollective/facts.yaml.erb'),
+  file { "${libdir}/refresh_facts.rb":
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '755',
+    content => template('mcollective/refresh_facts.rb.erb'),
+  } ->
+
+  exec { "${libdir}/refresh_facts.rb":
+    path    => '/usr/bin',
+    command => "${libdir}/refresh_facts.rb",
+    creates => '/etc/mcollective/facts.yaml',
   }
 
   ensure_resource(mcollective::server::agent, $agents, { ensure => present })
