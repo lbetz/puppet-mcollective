@@ -18,15 +18,15 @@ plugin.activemq.pool.1.port = <%= @_mqueue['port'] %>
 plugin.activemq.pool.1.user = <%= @_mqueue['user'] %>
 plugin.activemq.pool.1.password = <%= @_mqueue['password'] %>
 plugin.activemq.pool.1.ssl = 1
-plugin.activemq.pool.1.ssl.ca = /root/.mcollective.d/credentials/certs/ca.pem
-plugin.activemq.pool.1.ssl.cert = /root/.mcollective.d/credentials/certs/<%= @certname %>.pem
-plugin.activemq.pool.1.ssl.key = /root/.mcollective.d/credentials/private_keys/<%= @certname %>.pem
+plugin.activemq.pool.1.ssl.ca = <%= @_home %>/.mcollective.d/credentials/certs/ca.pem
+plugin.activemq.pool.1.ssl.cert = <%= @_home %>/.mcollective.d/credentials/certs/<%= @certname %>.pem
+plugin.activemq.pool.1.ssl.key = <%= @_home %>/.mcollective.d/credentials/private_keys/<%= @certname %>.pem
 plugin.activemq.pool.1.ssl.fallback = 0
 
 # SSL plugin settings:
-plugin.ssl_server_public = /root/.mcollective.d/credentials/certs/mcollective-servers.pem
-plugin.ssl_client_private = /root/.mcollective.d/credentials/private_keys/<%= @certname %>.pem
-plugin.ssl_client_public = /root/.mcollective.d/credentials/certs/<%= @certname %>.pem
+plugin.ssl_server_public = <%= @_home %>/.mcollective.d/credentials/certs/mcollective-servers.pem
+plugin.ssl_client_private = <%= @_home %>/.mcollective.d/credentials/private_keys/<%= @certname %>.pem
+plugin.ssl_client_public = <%= @_home %>/.mcollective.d/credentials/certs/<%= @certname %>.pem
 
 # Interface settings (optional):
 # ------------------------------

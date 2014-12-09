@@ -1,7 +1,7 @@
 {
   "author": "Lennart Betz",
-  "name": "puppet-mcollective",
-  "version": "0.1.0",
+  "name": "lbetz-mcollective",
+  "version": "0.1.1",
   "source": "git://github.com/lbetz/puppet-mcollective",
   "license": "Apache 2.0",
   "project_page": "http://github.com/lbetz/puppet-mcollective",
