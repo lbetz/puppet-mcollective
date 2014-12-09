@@ -44,7 +44,7 @@ class mcollective::server::install {
 
   cron { 'mcollective::refresh-facts':
     environment => "PATH=${::path}",
-    command     => "${libdir}/refresh-facts.rb",
+    command     => "${libdir}/refresh_facts.rb",
     user        => 'root',
     minute      => [ '0', '15', '30', '45' ],
   }
