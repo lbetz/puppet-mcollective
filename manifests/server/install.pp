@@ -37,9 +37,16 @@ class mcollective::server::install {
   } ->
 
   exec { "${libdir}/refresh_facts.rb":
-    path    => '/usr/bin',
+    path    => $::path,
     command => "${libdir}/refresh_facts.rb",
     creates => '/etc/mcollective/facts.yaml',
+  } ->
+
+  cron { 'mcollective::refresh-facts':
+    environment => "PATH=${::path}",
+    command     => "${libdir}/refresh-facts.rb",
+    user        => 'root',
+    minute      => [ '0', '15', '30', '45' ],
   }
 
   ensure_resource(mcollective::server::agent, $agents, { ensure => present })
