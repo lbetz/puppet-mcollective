@@ -17,7 +17,7 @@ You must run puppet in agent mode and certicicates have to be found in /var/lib/
 
 ##Usage
 
-###Beginning with MCollective Server
+###Beginning with MCollective
 Requires a puppet setup with a master and stored configs enabled. An installed ActiveMQ using SSL certificates. User certificates can used from puppet CA, created by 'puppet cert generate'.
 
 First we wanna install a server connecting to an activemq on host master using the default port. The argument 'agents' put the packages for the given agents on the host. The private key and the signed certificate here is set as string in base64.
@@ -94,7 +94,7 @@ modules
 ###Classes and Defined Types
 
 ####Class: mcollective::server
-**Parameters within `tomcat`:**
+**Parameters within `mcollective`:**
 
 #####ensure
 present or running (present), stopped
@@ -119,13 +119,13 @@ Parameters hash for MQ connection. Defaults are:
   password => 'marionette',
 
 
-#####Class: mcollective::client
+####Class: mcollective::client
 
 #####plugins
 List (array) of plugins have to be installed. Defaults are 'package', 'puppet' andf 'service'.
 
 
-####Define Type: mcollective::server::agent
+####Defined Type: mcollective::server::agent
 
 #####ensure
 Installs agent (present) or removes (absent). Default is present.
@@ -149,7 +149,7 @@ Sets the plugin name, default is the title.
 Use this package name for installation. Default: mcollective-${plugin}-client
 
 
-####Define Type: mcollective::client::user
+####Defined Type: mcollective::client::user
 
 #####certname
 Name of the certificate file, the suffix .pem is automatically added. Default is the 'title' of the define resource.
