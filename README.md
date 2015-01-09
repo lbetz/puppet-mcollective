@@ -9,7 +9,7 @@ This module uses packages from puppetlabs and runs on RHEL/Centos and Debian. Ac
 
 ###Requirements
   - Puppet 3.x
-  - puppetlabs/stdlib >= 3.2.2
+  - puppetlabs/stdlib >= 3.2.0
 
 You must run puppet in agent mode and certicicates have to be found in /var/lib/puppet/ssl.
 
@@ -78,7 +78,7 @@ mcollective::client::user { 'foo':
 }
 ```
 Here we used for the key and the certivicates, client and mcollective-servers certs, files like above in the server configuration. That means both declarations are contained by another class, i.e. profiles, the mcollective module takes it outta this profiles module's files directory.
- 
+
 ```puppet
 modules
 |-- mcollective
@@ -93,25 +93,25 @@ modules
 
 ###Classes and Defined Types
 
-####Class: mcollective::server
-**Parameters within `mcollective`:**
+####Class: `mcollective::server`
+**Parameters within `mcollective::server`:**
 
-#####ensure
+#####`ensure`
 present or running (present), stopped
 
-#####enable
+#####`enable`
 Enables (true, default) or disables (false) the service to start at boot.
 
-#####agents
+#####`agents`
 List (array) of agents have to be installed.
 
-#####key
+#####`key`
 Private session key to use. Default is a base coded file, source gets from ${caller_module_name}/private_keys/mcollective-servers.pem on the puppetmaster.
 
-#####cert
+#####`cert`
 Session certificate to use. Default is a base coded file, source gets from ${caller_module_name}/certs/mcollective-servers.pem on the puppetmaster
 
-#####mqueue
+#####`mqueue`
 Parameters hash for MQ connection. Defaults are:
   host     => 'puppet',
   port     => '61614',
@@ -119,60 +119,64 @@ Parameters hash for MQ connection. Defaults are:
   password => 'marionette',
 
 
-####Class: mcollective::client
+####Class: `mcollective::client`
+**Parameters within `mcollective::client`:**
 
-#####plugins
+#####`plugins`
 List (array) of plugins have to be installed. Defaults are 'package', 'puppet' andf 'service'.
 
 
-####Defined Type: mcollective::server::agent
+####Defined Type: `mcollective::server::agent`
+**Parameters within `mcollective::server::agent`:**
 
-#####ensure
+#####`ensure`
 Installs agent (present) or removes (absent). Default is present.
 
-#####agent
+#####`agent`
 Sets the agent name, default is the title.
 
-#####package
+#####`package`
 Use this package name for installation. Default: mcollective-${agent}-agent
 
 
-####Define Type: mcollective::client::plugin
+####Define Type: `mcollective::client::plugin`
+**Parameters within `mcollective::client::plugin`:**
 
-#####ensure
+#####`ensure`
 Installs plugin (present) or removes (absent). Default is present.
 
-#####plugin
+#####`plugin`
 Sets the plugin name, default is the title.
 
-#####package
+#####`package`
 Use this package name for installation. Default: mcollective-${plugin}-client
 
 
-####Defined Type: mcollective::client::user
+####Defined Type: `mcollective::client::user`
+**Parameters within `mcollective::client::user`:**
 
-#####certname
+#####`certname`
 Name of the certificate file, the suffix .pem is automatically added. Default is the 'title' of the define resource.
 
-#####user
+#####`user`
 User to use and the owner of all files. Default is the 'title'.
 
-#####group
+#####`group`
 Group to use and the group of all files. Default is the 'title'.
 
-#####home
+#####`home`
 The home directory of the chosen user. Default ist the '/home/title'.
 
-#####server_cert
+#####`server_cert`
 The mcolelctive session certificate. By default a file mcollective-servers.pem is taken from the puppetmaster out of ${caller_module_name}/certs/.
 
-#####key
+#####`key`
 Private key of the user, base64 coded. By default a file user.pem is taken from the puppetmaster out of ${caller_module_name}/certs/.
 
-#####cert
+#####`cert`
 User certificate, base64 coded. By default a file user.pem is taken from the puppetmaster out of ${caller_module_name}/private_keys/.
 
-#####mqueue
+#####`mqueue`
 Parameters hash for MQ connection. Defaults are:
   host     => 'puppet',
   port     => '61614',
