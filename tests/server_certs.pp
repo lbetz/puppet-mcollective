@@ -1,5 +1,5 @@
 class { 'mcollective::server':
-key => '-----BEGIN RSA PRIVATE KEY-----
+  key  => '-----BEGIN RSA PRIVATE KEY-----
 MIIJKQIBAAKCAgEA2WpP+sT66doBb8k0QnQ1P5TIBz2gA1Ft4CCf6kZwOeJwNRXq
 IYinzmec4mwWvxBiLH243GJDtwLU7gWfgi3dEuChuZvvpZtyk2wcks23pSzrRTkh
 +1mLT4i5BbytpwvhJFLYXUNH8HNu+ri2/4rQbHQ9mbqPPtWZ5gPddcVs2qmZwmFg
@@ -50,7 +50,7 @@ kcqtlGnsdp0MXRKHt41YDGLmTlLuGuucJuELHWlG2q022POVgozvQMerw/nH7jby
 RsZsnv0Ieq0ELbPgUpMx0n+Tply2NdcHSDaIXh+087tragbInVL+j9mgm4NAcVi/
 EadMzFd/8LI4mJzlxt904KhTvZbBjtuoF3mBz9ZyX4vsiWQIFt0A+68MFz53
 -----END RSA PRIVATE KEY-----',
-cert => '-----BEGIN CERTIFICATE-----
+  cert => '-----BEGIN CERTIFICATE-----
 MIIFXTCCA0WgAwIBAgIBFTANBgkqhkiG9w0BAQsFADAqMSgwJgYDVQQDDB9QdXBw
 ZXQgQ0E6IHJvdXRlci5wcmVmb3JrLmxvY2FsMB4XDTE0MTExNjEzMjAyOVoXDTE5
 MTExNjEzMjAyOVowHjEcMBoGA1UEAwwTbWNvbGxlY3RpdmUtc2VydmVyczCCAiIw

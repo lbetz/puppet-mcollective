@@ -7,8 +7,8 @@
 # Document parameters here.
 #
 # [*certname*]
-#   Name of the certificate file, the suffix .pem is automatically added. Default
-#   is the 'title' of the define resource.
+#   Name of the certificate file, the suffix .pem is automatically
+#   added. Default is the 'title' of the define resource.
 #
 # [*user*]
 #   User to use and the owner of all files. Default is the 'title'.
@@ -20,8 +20,9 @@
 #   The home directory of the chosen user. Default ist the '/home/title'.
 #
 # [*server_cert*]
-#   The mcolelctive session certificate. By default a file mcollective-servers.pem
-#   is taken from the puppetmaster out of ${caller_module_name}/certs/.
+#   The mcolelctive session certificate. By default a file
+#   mcollective-servers.pem is taken from the puppetmaster out
+#   of ${caller_module_name}/certs/.
 #
 # [*key*]
 #   Private key of the user, base64 coded. By default a file user.pem is
@@ -41,10 +42,10 @@
 #
 # === Examples
 #
-# Set up the nessessary mcollective client environment for user 'batman'. That means
-# after installation the configuration '.mcollective' is stored in '/root' and
-# the private key and the certificate in '.mcollective.d/credentials/private_keys' and
-# 'certs' respectively.
+# Set up the nessessary mcollective client environment for user 'batman'.
+# That means after installation the configuration '.mcollective' is stored
+# in '/root' and the private key and the certificate in
+# '.mcollective.d/credentials/private_keys' and 'certs' respectively.
 #
 # mcollective::client::user { 'batman':
 #   user  => 'root',
@@ -70,7 +71,7 @@ define mcollective::client::user(
 ) {
 
   validate_re($ensure, '^(present|absent)$',
-              "${ensure} is not supported for ensure. Valid values are 'present' and 'absent'.")
+    "${ensure} is not supported for ensure. Valid values are 'present' and 'absent'.")
   validate_hash($mqueue)
 
   include mcollective::params
@@ -86,7 +87,8 @@ define mcollective::client::user(
     $_home = "/home/${user}"
   }
 
-  # for testing, because $caller_module_name is not set then calling from top level
+  # for testing, because $caller_module_name isn't
+  # set then calling from top level
   if $caller_module_name {
     $_caller_module_name = $caller_module_name }
   else {
@@ -107,10 +109,10 @@ define mcollective::client::user(
     }
 
     file { [ "${_home}/.mcollective.d",
-             "${_home}/.mcollective.d/credentials",
-             "${_home}/.mcollective.d/credentials/certs",
-             "${_home}/.mcollective.d/credentials/private_keys",
-           ]:
+        "${_home}/.mcollective.d/credentials",
+        "${_home}/.mcollective.d/credentials/certs",
+        "${_home}/.mcollective.d/credentials/private_keys",
+        ]:
       ensure => directory,
     }
 

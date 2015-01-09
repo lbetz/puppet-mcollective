@@ -1,3 +1,11 @@
+# == private Class: mcollective::params
+#
+# Full description of define mcollective::params here.
+#
+# === Authors
+#
+# Author Lennart Betz <lennart.betz@netways.de>
+#
 class mcollective::params {
 
   $default_agents = [ 'package', 'puppet', 'service' ]

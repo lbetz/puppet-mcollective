@@ -11,7 +11,8 @@
 #   Sets the plugin name, default is the title.
 #
 # [*package*]
-#   Use this package name for installation. Default: mcollective-${plugin}-client
+#   Use this package name for installation. Default:
+#   mcollective-${plugin}-client
 #
 #
 # === Authors
@@ -25,7 +26,7 @@ define mcollective::client::plugin(
 ) {
 
   validate_re($ensure, '^(present|absent)$',
-              "${ensure} is not supported for ensure. Valid values are 'present' and 'absent'.")
+    "${ensure} is not supported for ensure. Valid values are 'present' and 'absent'.")
 
   include mcollective::params
 

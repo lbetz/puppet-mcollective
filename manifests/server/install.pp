@@ -32,7 +32,7 @@ class mcollective::server::install {
     ensure  => file,
     owner   => 'root',
     group   => 'root',
-    mode    => '755',
+    mode    => '0755',
     content => template('mcollective/refresh_facts.rb.erb'),
   } ->
 

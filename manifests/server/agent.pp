@@ -36,8 +36,8 @@ define mcollective::server::agent(
     $_package = "mcollective-${agent}-agent" }
 
   package { $_package:
-    ensure  => $ensure,
-    notify  => Class['mcollective::server::service'],
+    ensure => $ensure,
+    notify => Class['mcollective::server::service'],
   }
 
 }

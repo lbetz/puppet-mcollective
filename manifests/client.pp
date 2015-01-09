@@ -7,12 +7,14 @@
 # Document parameters here.
 #
 # [*plugins*]
-#   List (array) of plugins have to be installed. Defaults are 'package', 'puppet' andf 'service'.
+#   List (array) of plugins have to be installed. Defaults 
+#   are 'package', 'puppet' andf 'service'.
 #
 #
 # === Examples
 #
-# Set up the client software and further more the plugins for package and puppet management.
+# Set up the client software and further more the plugins for
+# package and puppet management.
 #
 # class { 'mcollective::client':
 #   plugins => ['package', 'puppet'],
