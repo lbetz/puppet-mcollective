@@ -2,7 +2,7 @@
   "author": "Lennart Betz",
   "name": "lbetz-mcollective",
   "version": "0.2.1",
-  "source": "git://github.com/lbetz/puppet-mcollective",
+  "source": "git://github.com/lbetz/puppet-mcollective.git",
   "license": "Apache-2.0",
   "project_page": "http://github.com/lbetz/puppet-mcollective",
   "summary": "Setup and configure MCollective server, client and user on RedHat/CentOS and Debian",
@@ -37,8 +37,8 @@
   "description": "Setup and configure MCollective server, client and user on RedHat/CentOS and Debian",
   "dependencies": [
     {
-      "version_requirement": ">= 3.2.0",
-      "name": "puppetlabs/stdlib"
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 3.2.0"
     }
   ]
 }
