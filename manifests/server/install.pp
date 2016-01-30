@@ -15,7 +15,7 @@ class mcollective::server::install {
   $agents = $mcollective::server::agents
   $libdir = $params::libdir
 
-  package { ['mcollective', 'mcollective-actionpolicy-auth', 'mcollective-facter-facts']:
+  package { ['mcollective', 'mcollective-actionpolicy-auth']:
     ensure => installed,
   } ->
 
